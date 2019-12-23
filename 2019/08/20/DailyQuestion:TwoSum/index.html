@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>DailyQuestion Two Sum | Chestnut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution, and you may not use the sam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DailyQuestion Two Sum">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;08&#x2F;20&#x2F;DailyQuestion:TwoSum&#x2F;index.html">
+<meta property="og:site_name" content="Chestnut">
+<meta property="og:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution, and you may not use the sam">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-20T11:29:12.000Z">
+<meta property="article:modified_time" content="2019-12-19T04:42:51.000Z">
+<meta property="article:author" content="Chestnut&#39;lee">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-DailyQuestion:TwoSum" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">Chestnut</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a>&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/categories/Blog">Blog</a>
+        
+        <a href="/categories/Note">Note</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/categories/Blog">Blog</a>
+	
+	  <a class="main-nav-link" href="/categories/Note">Note</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      DailyQuestion Two Sum
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>   Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.<br>给定一个整数数组，返回两个数字的索引，使它们相加到特定目标。<br>您可以假设每次输入都是唯一的值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given nums &#x3D; [2, 7, 11, 15], target &#x3D; 9,</span><br><span class="line">Because nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一种最笨的方法"><a href="#第一种最笨的方法" class="headerlink" title="第一种最笨的方法"></a>第一种最笨的方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> target) &#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">	<span class="keyword">int</span> i,j =<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span>(;i &lt;len; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span>(j = i+<span class="number">1</span>; j &lt; len; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[i] + nums[j] == target) &#123;</span><br><span class="line">				result.push_back(i);</span><br><span class="line">				result.push_back(j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的时间复杂度是:<strong>O(n²)</strong><br>其实这个题期望的复杂度是:<strong>O(n)</strong></p>
+<h2 id="最优解的方法-采用hash表来做索引"><a href="#最优解的方法-采用hash表来做索引" class="headerlink" title="最优解的方法 采用hash表来做索引"></a>最优解的方法 采用hash表来做索引</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum_HashMap(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">       <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; temp;</span><br><span class="line">       <span class="keyword">int</span> i =<span class="number">0</span>; <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">       <span class="keyword">for</span>(;i &lt; len; ++i) &#123;</span><br><span class="line">           <span class="keyword">if</span>(temp.<span class="built_in">find</span>(target-nums[i]) != temp.<span class="built_in">end</span>()) &#123;</span><br><span class="line">               result.push_back(temp[target - nums[i]]);</span><br><span class="line">               result.push_back(i);</span><br><span class="line">           &#125;</span><br><span class="line">           temp[nums[i]] = i;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><ul>
+<li>这里使用unordered_map 是因为内部数据结构是哈希表</li>
+<li>哈希表的特点就是查找效率高,时间复杂度为常数级<strong>O(1)</strong></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2019/08/20/DailyQuestion:TwoSum/" class="article-date">
+  <time class="dt-published" datetime="2019-08-20T11:29:12.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>
+  </div>
+
+
+          </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/11/26/TemplateForCppSingleton/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++模板类管理单例释放
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/22/Array/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Array</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>「Software is like <strong>sex</strong>, it’s better when it’s <strong>free</strong> .」</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

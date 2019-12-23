@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>时间复杂度表示法 | Chestnut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="时间复杂度全称为渐进时间复杂度,表示算法的执行时间与数据规模之间的增长关系.  大O表示法 先看一段代码12345678func cal (n int ) int &amp;#123;	i :&#x3D; 0	sum :&#x3D; 0	for ;i &lt; n ; i++  &amp;#123;		sum +&#x3D; i	&amp;#125;	return sum&amp;#125; 从CPU角度来看,这些代码都是读数据 运算 写数据 ,这里把每一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间复杂度表示法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;05&#x2F;20&#x2F;BigO&#x2F;index.html">
+<meta property="og:site_name" content="Chestnut">
+<meta property="og:description" content="时间复杂度全称为渐进时间复杂度,表示算法的执行时间与数据规模之间的增长关系.  大O表示法 先看一段代码12345678func cal (n int ) int &amp;#123;	i :&#x3D; 0	sum :&#x3D; 0	for ;i &lt; n ; i++  &amp;#123;		sum +&#x3D; i	&amp;#125;	return sum&amp;#125; 从CPU角度来看,这些代码都是读数据 运算 写数据 ,这里把每一">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-20T20:32:55.000Z">
+<meta property="article:modified_time" content="2019-12-19T04:42:51.000Z">
+<meta property="article:author" content="Chestnut&#39;lee">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-BigO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">Chestnut</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a>&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/categories/Blog">Blog</a>
+        
+        <a href="/categories/Note">Note</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/categories/Blog">Blog</a>
+	
+	  <a class="main-nav-link" href="/categories/Note">Note</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      时间复杂度表示法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>时间复杂度全称为<strong>渐进时间复杂度,表示算法的执行时间与数据规模之间的增长关系.</strong></p>
+</blockquote>
+<h2 id="大O表示法"><a href="#大O表示法" class="headerlink" title="大O表示法"></a>大<strong>O</strong>表示法</h2><ul>
+<li>先看一段代码<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cal</span> <span class="params">(n <span class="keyword">int</span> )</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	i := <span class="number">0</span></span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ;i &lt; n ; i++  &#123;</span><br><span class="line">		sum += i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>从CPU角度来看,这些代码都是读数据 运算 写数据 ,这里把每一行代码运行时间都记为unit_time;<ol>
+<li>第一行和第二行运行时间分别都是<strong>1</strong>个unit_time</li>
+<li>第四行和第五行运行时间都为<strong>n</strong>个unit_time 这里记为<strong>2n</strong>个unit_time</li>
+<li>所以这段代码的运行时间为<strong>2n+2</strong>个unit_time</li>
+<li>可以看出来所有的代码的执行时间<strong>T(n)</strong>与每行代码执行的次数成正比 </li>
+</ol>
+</li>
+<li>在看以下一段代码</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cal</span> <span class="params">(n <span class="keyword">int</span> )</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	i := <span class="number">0</span></span><br><span class="line">	j := <span class="number">0</span></span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ;i &lt; n ; i++  &#123;</span><br><span class="line">		j = <span class="number">1</span></span><br><span class="line">		<span class="keyword">for</span> ;j &lt; n ;j++  &#123;</span><br><span class="line">			sum += i+j</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里每行代码运行时间单位还是unit_time<ol>
+<li>第2,3,4行都是1一个unit_time,即3个unit_time</li>
+<li>5,6行分别都是n个unit_time,即2n个unit_time</li>
+<li>7,8行分别都是n个unit_time,即n²个unit_time</li>
+<li>最后得出结果是<strong>2n+2n²+3</strong>个unit_time</li>
+</ol>
+</li>
+<li>从这两段代码都是可以看出来,程序运行时间(<strong>T(n)</strong>)的都是与执行的代码行数<strong>n</strong>成正比</li>
+<li>得出来的公式为 T(n) = O(f(n))<ol>
+<li>T(n)表示代码执行的时间,n表示数据规模的大小,f(n)标识每行代码执行的次数总和;公式中的O表示代码的执行时间T(n)和f(n)表达式成正比</li>
+<li>第一个例子的结果为 T(n) = O(2n+2) 第二个例子结果为T(n) = O(2n²+2n+3),这个就是<strong>大O时间复杂度表示法</strong>,大O表示法并不能很精确的计算出代码真正的执行时间,只是能表示出来<strong>代码执行时间随着数据规模的增长而增长</strong>,所以也称为<strong>渐进时间复杂度</strong>,简称<strong>时间复杂度</strong>;</li>
+<li>公式中的低阶 常量 系数都不会左右T(n)的大小,所以这里只需要记录一个最大的数据量,以上的例子公式就可以简写为 1.T(n) = O(n) 2. T(n) = O(n²);</li>
+</ol>
+</li>
+</ul>
+<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><ol>
+<li>只关注<strong>循环执行次数最多</strong>的一段代码,表示为O(n);</li>
+<li>加法法则:总复杂度等于<strong>量级最大</strong>的那段代码的复杂度 如果是O(n²)+O(n³)那么结果就是T(n) = O(max(O(n²),O(n³));</li>
+<li>乘法法则:嵌套代码的复杂度等于嵌套内外代码复杂度的乘积,如果是 T1(n) = O(n) T2(n) = O(n) 那么结果就是 T(n)=O(n²)</li>
+</ol>
+<h2 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h2><ol>
+<li><strong>O</strong>(1) <ul>
+<li>一般情况下,只要算法中不存在递归,循环,这段代码的时间复杂度就是<strong>O</strong>(1);</li>
+</ul>
+</li>
+<li><strong>O</strong>(logn) <strong>O</strong>(nlogn)<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ;; &#123;</span><br><span class="line">	i++</span><br><span class="line">	i *= <span class="number">2</span></span><br><span class="line">	<span class="keyword">if</span> i &gt; Count &#123;</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>如果是对数复杂度,那么忽略底数,统一记为<strong>O</strong>(logn)</li>
+<li>如果一段代码的复杂度是<strong>O</strong>(logn),循环N遍,那么他的复杂度就是<strong>O</strong>(nlogn)</li>
+</ul>
+<ol start="3">
+<li><strong>O</strong>(m+n) <strong>O</strong>(m*n)<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cal</span><span class="params">(m <span class="keyword">int</span>,n <span class="keyword">int</span> )</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	i := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; i &lt; m ; i++ &#123;</span><br><span class="line">		sum  += i</span><br><span class="line">	&#125;</span><br><span class="line">	j := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> ; j &lt; n; j++ &#123;</span><br><span class="line">		sum += j</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>看代码得出这段代码的数据规模是有m和n来决定的,如果没有实际数据是无法评估出来复杂度的,所以这里的复杂度就是<strong>O</strong>(m+n)</li>
+</ul>
+<h1 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h1><blockquote>
+<p>空间复杂度全称为<strong>渐进空间复杂度,表示算法的存储空间与数据规模之间的增长关系.</strong></p>
+</blockquote>
+<ul>
+<li>常见的空间复杂度有<strong>O</strong>(1)  <strong>O</strong>(n) <strong>O</strong>(n²) <strong>O</strong>(logn) <strong>O</strong>(nlogn)</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>复杂度也叫渐进复杂度,包括时间复杂度和空间复杂度,用来分析算法的执行效率与数据规模之前的增长关系,越高阶复杂度的算法,执行效率越低.</li>
+<li>低阶到高阶的的复杂度有:<strong>O</strong>(1) <strong>O</strong>(logn) <strong>O</strong>(n) <strong>O</strong>(nlogn) <strong>O</strong>(n²)</li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/05/20/BigO/" class="article-date">
+  <time class="dt-published" datetime="2018-05-20T20:32:55.000Z" itemprop="datePublished">2018-05-20</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>
+  </div>
+
+
+          </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/05/22/Array/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Array
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/11/GDB%E8%B0%83%E8%AF%95%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">GDB调试运行中的程序</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>「Software is like <strong>sex</strong>, it’s better when it’s <strong>free</strong> .」</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

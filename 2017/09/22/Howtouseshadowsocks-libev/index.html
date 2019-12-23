@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>教你如何使用高效的shadowsocks-libev | Chestnut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于工作中时常出现问题,需要使用检索网站搜索解决方案,众所周知baidu的结果集有点弱;所以学会了翻越gfw去访问google来搜索解决方案,效率提升180%;虽然失去了祖国gwf的保护,但是我承诺我还是优秀的社会主义接班人!!!特此撰写此文章来分享给大家,希望大家使用此工具提升工作效率,为我国社会主义建设增砖添瓦;早日实现中国芯的目标;我发现我的求生欲望很强;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教你如何使用高效的shadowsocks-libev">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;09&#x2F;22&#x2F;Howtouseshadowsocks-libev&#x2F;index.html">
+<meta property="og:site_name" content="Chestnut">
+<meta property="og:description" content="由于工作中时常出现问题,需要使用检索网站搜索解决方案,众所周知baidu的结果集有点弱;所以学会了翻越gfw去访问google来搜索解决方案,效率提升180%;虽然失去了祖国gwf的保护,但是我承诺我还是优秀的社会主义接班人!!!特此撰写此文章来分享给大家,希望大家使用此工具提升工作效率,为我国社会主义建设增砖添瓦;早日实现中国芯的目标;我发现我的求生欲望很强;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-22T14:49:13.000Z">
+<meta property="article:modified_time" content="2019-12-19T04:42:51.000Z">
+<meta property="article:author" content="Chestnut&#39;lee">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Howtouseshadowsocks-libev" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">Chestnut</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a>&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/categories/Blog">Blog</a>
+        
+        <a href="/categories/Note">Note</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/categories/Blog">Blog</a>
+	
+	  <a class="main-nav-link" href="/categories/Note">Note</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      教你如何使用高效的shadowsocks-libev
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <p>由于工作中时常出现问题,需要使用检索网站搜索解决方案,众所周知baidu的结果集有点弱;<br>所以学会了翻越gfw去访问google来搜索解决方案,效率提升180%;<br>虽然失去了祖国gwf的保护,但是我承诺我还是优秀的社会主义接班人!!!<br>特此撰写此文章来分享给大家,希望大家使用此工具提升工作效率,为我国社会主义建设增砖添瓦;<br>早日实现中国芯的目标;<br>我发现我的求生欲望很强;</p>
+<a id="more"></a>
+
+<h3 id="首先致敬一下Shadowsocks作者还有ShadossocksR的作者"><a href="#首先致敬一下Shadowsocks作者还有ShadossocksR的作者" class="headerlink" title="首先致敬一下Shadowsocks作者还有ShadossocksR的作者"></a>首先致敬一下Shadowsocks作者还有ShadossocksR的作者</h3><ul>
+<li><a href="https://github.com/clowwindy" target="_blank" rel="noopener">clowwindy</a> 被有关部门请去喝茶,所以所有的代码都移除了,但是还有很多人fork了;留下了星星之火</li>
+<li><a href="https://github.com/breakwa11" target="_blank" rel="noopener">breakwa11</a> 在google+ 有群组有兴趣可以去搜索ssr</li>
+<li>现在的libev版本由<a href="https://github.com/madeye" target="_blank" rel="noopener">madeye</a>维护更新</li>
+</ul>
+<h3 id="版本介绍"><a href="#版本介绍" class="headerlink" title="版本介绍"></a>版本介绍</h3><ul>
+<li>因为libevent是基于<strong>C语言</strong>开发的,所以占用<strong>资源少</strong>,<strong>稳定</strong>,<strong>高效</strong>;</li>
+<li>顺便也可以瞻仰大神的代码</li>
+<li>面试也有很多问到libev,也可以借此机会了给自己充充电</li>
+</ul>
+<h3 id="源码安装的步骤"><a href="#源码安装的步骤" class="headerlink" title="源码安装的步骤"></a>源码安装的步骤</h3><ul>
+<li>Shadowsocks-libev版本所依赖的包<ol>
+<li>asciidoc</li>
+<li>libsodium</li>
+<li>c-ares</li>
+<li>mbedtls</li>
+<li>autoconf </li>
+<li>xmlto</li>
+</ol>
+</li>
+<li>接下来就是常规的安装操作:<blockquote>
+<p>bash autogen.sh<br>./configure<br>make -j &amp;&amp; make install</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="如果不想用源码安装也可以选择Ubuntu添加PPA源"><a href="#如果不想用源码安装也可以选择Ubuntu添加PPA源" class="headerlink" title="如果不想用源码安装也可以选择Ubuntu添加PPA源"></a>如果不想用源码安装也可以选择Ubuntu添加PPA源</h3><blockquote>
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade<br>sudo apt-get install software-properties-common &amp;&amp; sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev &amp;&amp; sudo apt-get update<br>sudo apt install shadowsocks-libev</p>
+</blockquote>
+<h3 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h3><ul>
+<li>选择一个目录路径,创建一个格式为json的文件,文件名任意起,这里举例为filename.json;<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</span><br><span class="line">      <span class="attr">"server_port"</span>:<span class="number">8388</span>,</span><br><span class="line">      <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">"local_port"</span>:<span class="number">1080</span>,</span><br><span class="line">      <span class="attr">"mode"</span>:<span class="string">"tcp_and_udp"</span>,</span><br><span class="line">      <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</span><br><span class="line">      <span class="attr">"timeout"</span>:<span class="number">300</span>,</span><br><span class="line">      <span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span>,</span><br><span class="line">      <span class="attr">"fast_open"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server: 服务器的ip;</span><br><span class="line">server_port: 要绑定的ip,默认是8388</span><br><span class="line">local_address: 本地绑定的ip,最好写成0.0.0.0</span><br><span class="line">local_port: 本地绑定的端口</span><br><span class="line">mode: 开启tcp和udp 转发(给游戏加速很有用,因为有的游戏走的UDP协议)</span><br><span class="line">password: 要设置的密码</span><br><span class="line">method: 加密方式</span><br><span class="line">fast_open: 加速 需要内核的支持;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li>安装Shadowsocks-libev后,会生成6个可执行程序 </li>
+<li>ss-local ss-manager ss-nat ss-redir ss-server ss-tunnel</li>
+<li>主要使用 ss-server (主要是其他的那几个我也不太清楚具体功能是干嘛的…)</li>
+<li>启动名字为 ss-server -c /path/filename.json -u -v (-v选项是啰嗦模式的log,-u是开启UDP转发) (这里的path是你的filenam.json路径)</li>
+<li>其实就是启动多个ss-server进程</li>
+<li>ss-server -c /path/filename1.json</li>
+<li>ss-server -c /path/filename2.json</li>
+<li>以此类推</li>
+<li>每个配置文件里面可以设置 <code>&quot;server_port&quot;:xxx</code>和<code>&quot;password&quot;:&quot;mypassword&quot;</code> 不同</li>
+</ul>
+<h3 id="编写shell脚本来守护ss-server进程"><a href="#编写shell脚本来守护ss-server进程" class="headerlink" title="编写shell脚本来守护ss-server进程"></a>编写shell脚本来守护ss-server进程</h3><ul>
+<li>搭建SS服务器后,发现把ss-server进程后运行后,不知道什么原因总有那么几次服务会dump,所以需要写一个脚本来守护ss进程;下面是shell代码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">do</span> </span><br><span class="line">            procnum=` ps -ef | grep <span class="string">"ss-server"</span> |  grep -v <span class="string">"grep"</span> | wc -l`</span><br><span class="line">            <span class="keyword">if</span> [ <span class="variable">$procnum</span>  -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">                rm /root/log.log</span><br><span class="line">                /usr/<span class="built_in">local</span>/bin/ss-server -c  /etc/shadowsock-libev/config.json -u -v &gt;&gt;/root/log.log 2&gt;/root/log.log&amp;</span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">            sleep 3</span><br><span class="line">        <span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
+<li>代码中的<code>/usr/local/bin/ss-server</code> <code>/etc/shadowsock-libev/config.json</code> <code>/root/log.log</code> 都需要替换成你们当前环境的路径</li>
+<li>记得给shellname.sh 赋予权限,eg:chmod 777 shellname.sh</li>
+</ul>
+<h3 id="设置开机启动守护进程"><a href="#设置开机启动守护进程" class="headerlink" title="设置开机启动守护进程"></a>设置开机启动守护进程</h3><ul>
+<li>vim /etc/rc.loacl </li>
+<li>增加 <code>/bin/bash    /path/ss-demon.sh  &amp;</code> </li>
+<li><code>/path/ss-demon.sh</code> 更换为你守护脚本的路径</li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/09/22/Howtouseshadowsocks-libev/" class="article-date">
+  <time class="dt-published" datetime="2017-09-22T14:49:13.000Z" itemprop="datePublished">2017-09-22</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>
+  </div>
+
+
+          </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/11/GDB%E8%B0%83%E8%AF%95%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          GDB调试运行中的程序
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/12/LinuxCommandTar/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux打包时跳过某个目录或文件</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>「Software is like <strong>sex</strong>, it’s better when it’s <strong>free</strong> .」</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++简洁的读入文件 | Chestnut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++ 简洁的读取文件内容的代码段 123456789101112#include &lt;fstream&gt;#include &lt;iostream&gt;using namespace std;ifstream infile(“filepath&quot;);if (!infile.is_open()) &amp;#123;    cout&lt;&lt;&quot;open faild&quot;&lt;&lt;wend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++简洁的读入文件">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;02&#x2F;11&#x2F;C++ReadFile&#x2F;index.html">
+<meta property="og:site_name" content="Chestnut">
+<meta property="og:description" content="C++ 简洁的读取文件内容的代码段 123456789101112#include &lt;fstream&gt;#include &lt;iostream&gt;using namespace std;ifstream infile(“filepath&quot;);if (!infile.is_open()) &amp;#123;    cout&lt;&lt;&quot;open faild&quot;&lt;&lt;wend">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-02-11T23:12:53.000Z">
+<meta property="article:modified_time" content="2019-12-19T04:42:51.000Z">
+<meta property="article:author" content="Chestnut&#39;lee">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-C++ReadFile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">Chestnut</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a>&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/categories/Blog">Blog</a>
+        
+        <a href="/categories/Note">Note</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/categories/Blog">Blog</a>
+	
+	  <a class="main-nav-link" href="/categories/Note">Note</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C++简洁的读入文件
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<pre><code>C++ 简洁的读取文件内容的代码段</code></pre></blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">ifstream <span class="title">infile</span><span class="params">(“filepath<span class="string">");</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">if (!infile.is_open()) &#123;</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">    cout&lt;&lt;"</span><span class="built_in">open</span> faild<span class="string">"&lt;&lt;wendl;</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">&#125;</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">string str((std::istreambuf_iterator&lt;char&gt;(infile)),std::istreambuf_iterator&lt;char&gt;());</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">cout&lt;&lt;"</span>str:<span class="string">"&lt;&lt;str&lt;&lt;endl;</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="string">infile.close();</span></span></span></span><br></pre></td></tr></table></figure>
+
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/02/11/C++ReadFile/" class="article-date">
+  <time class="dt-published" datetime="2017-02-11T23:12:53.000Z" itemprop="datePublished">2017-02-11</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+
+          </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/05/26/LinuxCommandGrep/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux Grep
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/06/C++NestedClass/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++嵌套类的使用和说明</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>「Software is like <strong>sex</strong>, it’s better when it’s <strong>free</strong> .」</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Array | Chestnut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数组是一种线性表数据结构,它用连续的内存空间,来存储一组具有相同类型的数据.  如何实现随机访问 线性表就是数据排成像一条线的结构,每个线性表上的数据最多只有前和后两个方向.其实除了数组,链表 队列 栈等也是线性表结构;相对立的的概念是非线性表,比如二叉树,堆,图,等;是因为在非线性表中,数据之间并不是简单的前后关系; 连续的内存空间和相同类型的数据,这个两个特征,让数组这个结构拥有了随机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2018&#x2F;05&#x2F;22&#x2F;Array&#x2F;index.html">
+<meta property="og:site_name" content="Chestnut">
+<meta property="og:description" content="数组是一种线性表数据结构,它用连续的内存空间,来存储一组具有相同类型的数据.  如何实现随机访问 线性表就是数据排成像一条线的结构,每个线性表上的数据最多只有前和后两个方向.其实除了数组,链表 队列 栈等也是线性表结构;相对立的的概念是非线性表,比如二叉树,堆,图,等;是因为在非线性表中,数据之间并不是简单的前后关系; 连续的内存空间和相同类型的数据,这个两个特征,让数组这个结构拥有了随机">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-22T10:11:51.000Z">
+<meta property="article:modified_time" content="2019-12-19T04:42:51.000Z">
+<meta property="article:author" content="Chestnut&#39;lee">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Array" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">Chestnut</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a>&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/categories/Blog">Blog</a>
+        
+        <a href="/categories/Note">Note</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/categories/Blog">Blog</a>
+	
+	  <a class="main-nav-link" href="/categories/Note">Note</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Array
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <blockquote>
+<p>   数组是一种线性表数据结构,它用连续的内存空间,来存储一组具有相同类型的数据.</p>
+</blockquote>
+<h2 id="如何实现随机访问"><a href="#如何实现随机访问" class="headerlink" title="如何实现随机访问"></a>如何实现随机访问</h2><ul>
+<li><strong>线性表</strong>就是数据排成像一条线的结构,每个线性表上的数据最多只有前和后两个方向.其实除了数组,链表 队列 栈等也是线性表结构;相对立的的概念是<strong>非线性表</strong>,比如二叉树,堆,图,等;是因为在非线性表中,数据之间并不是简单的前后关系;</li>
+<li><strong>连续的内存空间和相同类型的数据</strong>,这个两个特征,让数组这个结构拥有了<strong>随机访问</strong>的特性;正是拥有了这个特性,使数据的<strong>插入 删除</strong>复杂度很高,因为为了保持元素的连续性,每次删除插入都需要大量的数据搬运;</li>
+<li>实现随机访问的原理就是,由于每个元素的类型都一样,而且是连续空间,所以计算器存储元素的地址的都是连续的,只需要拿到数据的首地址 目的数据的下标 就可以求出来目的数据的值;公式是: 目的下标地址的值 = *(首地址 + 数据类型占用的字节数 * 下标位置)</li>
+</ul>
+<h2 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h2><ul>
+<li>首先是插入,如果现有一数组A,元素个数是N,那么要在第K个位置插入值’w’,那么就需要把K<del>N的元素都往后移动一位,如果K是数据的首位置的话,那么时间复杂度就是O(N),如果K是数据的尾地址那么时间复杂度就是O(1);如果数组内的元素是有序的话,那么就用有上面的办法,把K</del>N的数据都往后移动一位,因为插入每个位置的概率都是一样的,所以这里的平均时间复杂度就是O(N),所以效率极低,但是如果数据内的元素不是有序的,或者对数据没有任何要求,那么这里就可以把第K个位置的值拿出来,然后把’w’插入K的位置,然后把原来K位置的值,插入数据的尾端,那么这里的时间复杂度就是O(1);</li>
+<li>删除操作,由于数据的内存是连续性的,所以如果是删除操作那么这里也需要移动数据,如果删除的是数组尾端的数据那么时间复杂度是O(1),如果删除的是数组头部数据,那么就是最坏的时间复杂度O(N);在特殊情境下,我们并不一定非要追求数据中数据的连续性,如果我们将多次删除操作几种一起执行,那么删除的效率就会提高;现有一个数组A[10]={‘a’,’b’,’c’,’d’,’e’,’f’,’g’,’h’}现在要删除a,b,c这三个元素,为了避免后面的元素都移动三次,可以先记录下被删除的元素,每次删除操作并不执行移动数据,只记录这个位置的数据被删除,当数据的空间不够用的时候,再一起执行真正的删除操作去移动数据,这样就可以减少数据的移动;这个思路和JVM标记清楚垃圾回收算法的核心思想;</li>
+</ul>
+<h2 id="为什么数组的下标都是从0开始而不是从1开始呢"><a href="#为什么数组的下标都是从0开始而不是从1开始呢" class="headerlink" title="为什么数组的下标都是从0开始而不是从1开始呢?"></a>为什么数组的下标都是从0开始而不是从1开始呢?</h2><ul>
+<li>前面提到过如何去求下标地址的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">目的下标地址的值 &#x3D; *(首地址 + 数据类型占用的字节数 * 下标位置)</span><br></pre></td></tr></table></figure>
+如果这里数组从1开始计数,那么计算目的下标地址的值就会变成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">目的下标地址的值 &#x3D; *(首地址 + 数据类型占用的字节数 * (下标位置-1))</span><br></pre></td></tr></table></figure>
+对比这两个公式就会发现,如果从1开始计数的话,那么每次操作数组CPU都会执行减法操作的指令;</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>数组特点:支持随机访问,但是插入和删除操作效率会变低,平均复杂度为O(n),如果开发业务函数,那么可以使用容器类,如果做底层开发那么直接使用数组效果会比较好;</li>
+<li>如果是对于 m*n 的数组,a[i][j](i&lt;m,j&lt;n)的地址为的话,那么求目的下标地址的值公式是:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address &#x3D; base_address + ( i * n + j) * type_size</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/05/22/Array/" class="article-date">
+  <time class="dt-published" datetime="2018-05-22T10:11:51.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Blog/">Blog</a>
+  </div>
+
+
+          </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/08/20/DailyQuestion:TwoSum/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DailyQuestion Two Sum
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/20/BigO/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">时间复杂度表示法</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>「Software is like <strong>sex</strong>, it’s better when it’s <strong>free</strong> .」</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
